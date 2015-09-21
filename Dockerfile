@@ -35,6 +35,10 @@ ENV PATH /opt/google-cloud-sdk/bin:$PATH
 RUN ln -s `which nodejs` /usr/bin/node
 
 # ---
+
+RUN npm install wintersmith@2.2.1 wintersmith-appengine@2.0.6 wintersmith-less@0.2.3 wintersmith-browserify@0.9.0
+
+# ---
 # ---
 # ---
 
