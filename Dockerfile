@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # ---
 # ---
 
-RUN apt-get update && apt-get install -y -qq --no-install-recommends wget curl unzip git subversion build-essential python python-openssl ruby php5-cli php5-cgi php5-mysql openjdk-7-jre-headless openssh-client nodejs npm golang && apt-get clean
+RUN apt-get update && apt-get install -y -qq --no-install-recommends wget curl unzip git subversion build-essential python python-openssl ruby php5-cli php5-cgi php5-mysql openjdk-7-jre-headless openssh-client nodejs npm golang awscli && apt-get clean
 
 # ---
 # ---
@@ -36,7 +36,8 @@ RUN ln -s `which nodejs` /usr/bin/node
 
 # ---
 
-RUN npm install wintersmith@2.2.1 wintersmith-appengine@2.0.6 wintersmith-less@0.2.3 wintersmith-browserify@0.9.0
+RUN npm install -g grunt-cli@0.1.13
+RUN npm install -g wintersmith@2.2.1 wintersmith-appengine@2.0.6 wintersmith-less@0.2.3 wintersmith-browserify@0.9.0
 
 # ---
 # ---
