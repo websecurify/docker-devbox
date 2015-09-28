@@ -59,6 +59,12 @@ RUN npm install -g cloudflare-cli@1.4.0
 # ---
 # ---
 
+RUN gem install dpl
+
+# ---
+# ---
+# ---
+
 WORKDIR /root/
 
 # ---
