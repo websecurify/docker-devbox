@@ -43,6 +43,16 @@ RUN npm install -g wintersmith@2.2.1 wintersmith-appengine@2.0.6 wintersmith-les
 # ---
 # ---
 
+WORKDIR /opt/
+
+RUN wget -q https://s3.amazonaws.com/elasticbeanstalk/cli/AWS-ElasticBeanstalk-CLI-2.6.4.zip && unzip -q AWS-ElasticBeanstalk-CLI-2.6.4.zip && rm AWS-ElasticBeanstalk-CLI-2.6.4.zip
+
+ENV PATH /opt/AWS-ElasticBeanstalk-CLI-2.6.4/eb/linux/python2.7:$PATH
+
+# ---
+# ---
+# ---
+
 WORKDIR /root/
 
 # ---
