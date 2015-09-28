@@ -53,6 +53,12 @@ ENV PATH /opt/AWS-ElasticBeanstalk-CLI-2.6.4/eb/linux/python2.7:$PATH
 # ---
 # ---
 
+RUN npm install -g cloudflare-cli@1.4.0
+
+# ---
+# ---
+# ---
+
 WORKDIR /root/
 
 # ---
