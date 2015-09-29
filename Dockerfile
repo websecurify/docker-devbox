@@ -22,7 +22,7 @@ RUN apt-get update && \
         openjdk-7-jre-headless \
         openssh-client \
         nodejs npm \
-        golang \
+        golang && \
     apt-get clean
 
 # ---
