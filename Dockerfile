@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # ---
 # ---
 
-RUN apt-get update && apt-get install -y -qq --no-install-recommends wget curl unzip git subversion build-essential python python-openssl ruby php5-cli php5-cgi php5-mysql openjdk-7-jre-headless openssh-client nodejs npm golang awscli && apt-get clean
+RUN apt-get update && apt-get install -y -qq --no-install-recommends wget curl unzip git subversion build-essential python python-openssl ruby ruby-dev php5-cli php5-cgi php5-mysql openjdk-7-jre-headless openssh-client nodejs npm golang awscli && apt-get clean
 
 # ---
 # ---
