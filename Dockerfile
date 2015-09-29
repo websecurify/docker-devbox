@@ -32,7 +32,8 @@ RUN apt-get update && \
 WORKDIR /opt/
 
 RUN wget -q https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.zip && \
-    unzip -q google-cloud-sdk.zip && rm google-cloud-sdk.zip
+    unzip -q google-cloud-sdk.zip && \
+    rm google-cloud-sdk.zip
 
 ENV CLOUDSDK_PYTHON_SITEPACKAGES 1
 
