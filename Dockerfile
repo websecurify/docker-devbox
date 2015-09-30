@@ -21,9 +21,16 @@ RUN apt-get update && \
         php5-cli php5-cgi php5-mysql \
         openjdk-7-jre-headless \
         openssh-client \
-        nodejs npm \
         golang && \
     apt-get clean
+
+# ---
+# ---
+# ---
+
+RUN curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash -
+
+RUN apt-get install -y -qq nodejs
 
 # ---
 # ---
