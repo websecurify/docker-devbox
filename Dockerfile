@@ -1,14 +1,10 @@
-FROM ubuntu:15.04
+FROM ubuntu:14.04.3
 
 # ---
 # ---
 # ---
 
 ENV DEBIAN_FRONTEND noninteractive
-
-# ---
-# ---
-# ---
 
 RUN apt-get update && \
     apt-get install -y -qq --no-install-recommends \
