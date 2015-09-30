@@ -68,12 +68,6 @@ RUN pip install awscli awsebcli
 # ---
 # ---
 
-RUN gem install mini_portile nokogiri aws-sdk rubyzip dpl
-
-# ---
-# ---
-# ---
-
 WORKDIR /root/
 
 # ---
