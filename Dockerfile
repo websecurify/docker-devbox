@@ -1,4 +1,4 @@
-FROM ubuntu:14.04.3
+FROM ubuntu:15.04
 
 # ---
 # ---
@@ -7,7 +7,7 @@ FROM ubuntu:14.04.3
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
-    apt-get install -y -qq --no-install-recommends \
+    apt-get install -y --no-install-recommends \
         wget curl \
         unzip \
         git subversion \
@@ -17,6 +17,7 @@ RUN apt-get update && \
         php5-cli php5-cgi php5-mysql \
         openjdk-7-jre-headless \
         openssh-client \
+        libkrb5-dev \
         golang && \
     apt-get clean
 
@@ -24,9 +25,9 @@ RUN apt-get update && \
 # ---
 # ---
 
-RUN curl --silent --location https://deb.nodesource.com/setup_0.12 | bash -
+RUN curl --location https://deb.nodesource.com/setup_0.12 | bash -
 
-RUN apt-get install -y -qq nodejs
+RUN apt-get install -y nodejs
 
 # ---
 # ---
@@ -34,15 +35,15 @@ RUN apt-get install -y -qq nodejs
 
 WORKDIR /opt/
 
-RUN wget -q https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.zip && \
-    unzip -q google-cloud-sdk.zip && \
+RUN wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.zip && \
+    unzip google-cloud-sdk.zip && \
     rm google-cloud-sdk.zip
 
 ENV CLOUDSDK_PYTHON_SITEPACKAGES 1
 
 RUN google-cloud-sdk/install.sh --usage-reporting=true --path-update=true --bash-completion=true --rc-path=$HOME/.bashrc --disable-installation-options
-RUN google-cloud-sdk/bin/gcloud --quiet components update pkg-go pkg-python pkg-java preview alpha beta app
-RUN google-cloud-sdk/bin/gcloud --quiet config set component_manager/disable_update_check true
+RUN google-cloud-sdk/bin/gcloud components update pkg-go pkg-python pkg-java preview alpha beta app
+RUN google-cloud-sdk/bin/gcloud config set component_manager/disable_update_check true
 
 ENV PATH /opt/google-cloud-sdk/bin:$PATH
 
