@@ -28,7 +28,7 @@ RUN apt-get update && \
 # ---
 # ---
 
-RUN curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash -
+RUN curl --silent --location https://deb.nodesource.com/setup_0.12 | bash -
 
 RUN apt-get install -y -qq nodejs
 
