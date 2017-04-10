@@ -10,4 +10,10 @@
 	by Websecurify
 	
 
-Basic docker container for development.
+> Basic docker container for development
+
+# How To Use
+
+```sh
+$ docker pull websecurify/devbox
+```

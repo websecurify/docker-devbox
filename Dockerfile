@@ -1,4 +1,4 @@
-FROM ubuntu:15.04
+FROM ubuntu:latest
 
 # ---
 # ---
@@ -14,8 +14,8 @@ RUN apt-get update && \
         build-essential \
         python python-pip python-openssl \
         ruby ruby-dev \
-        php5-cli php5-cgi php5-mysql \
-        openjdk-7-jre-headless \
+        php-cli php-cgi php-mysql \
+        openjdk-9-jre-headless \
         openssh-client \
         libkrb5-dev \
         golang && \
@@ -25,41 +25,34 @@ RUN apt-get update && \
 # ---
 # ---
 
-RUN curl --location https://deb.nodesource.com/setup_0.12 | bash -
-
-RUN apt-get install -y nodejs
+RUN (curl --location https://deb.nodesource.com/setup_6.x | bash -) && \
+    (apt-get install -y --no-install-recommends nodejs)
 
 # ---
 # ---
 # ---
-
-WORKDIR /opt/
-
-RUN wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.zip && \
-    unzip google-cloud-sdk.zip && \
-    rm google-cloud-sdk.zip
 
 ENV CLOUDSDK_PYTHON_SITEPACKAGES 1
 
-RUN google-cloud-sdk/install.sh --usage-reporting=true --path-update=true --bash-completion=true --rc-path=$HOME/.bashrc --disable-installation-options
-RUN google-cloud-sdk/bin/gcloud components update pkg-go pkg-python pkg-java preview alpha beta app
-RUN google-cloud-sdk/bin/gcloud config set component_manager/disable_update_check true
-
-ENV PATH /opt/google-cloud-sdk/bin:$PATH
+RUN (echo "deb https://packages.cloud.google.com/apt cloud-sdk-$(lsb_release -c -s) main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list) && \
+    (curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -) && \
+    (apt-get update && apt-get install -y --no-install-recommends google-cloud-sdk google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-java)
 
 # ---
 # ---
 # ---
 
-RUN npm install -g grunt-cli@0.1.13 \
-                   cloudflare-cli@1.4.0 \
-                   wintersmith@2.2.1 wintersmith-appengine@2.0.6 wintersmith-less@0.2.3 wintersmith-browserify@0.9.0
+RUN npm install -g grunt-cli \
+                   cloudflare-cli \
+                   wintersmith wintersmith-appengine wintersmith-less wintersmith-browserify
 
 # ---
 # ---
 # ---
 
-RUN pip install awscli awsebcli
+RUN pip install --upgrade pip
+RUN pip install setuptools
+RUN pip install awscli
 
 # ---
 # ---
