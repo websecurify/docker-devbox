@@ -12,7 +12,7 @@ RUN apt-get update && \
         unzip \
         git subversion \
         build-essential \
-        python python-pip python-openssl \
+        python python-dev python-pip python-openssl \
         ruby ruby-dev \
         php-cli php-cgi php-mysql \
         openjdk-9-jre-headless \
