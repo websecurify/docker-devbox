@@ -4,6 +4,12 @@ FROM ubuntu:latest
 # ---
 # ---
 
+echo Build 1491838951
+
+# ---
+# ---
+# ---
+
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
