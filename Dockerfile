@@ -4,7 +4,7 @@ FROM ubuntu:latest
 # ---
 # ---
 
-echo Build 1491838951
+RUN echo Build 1491838951
 
 # ---
 # ---
